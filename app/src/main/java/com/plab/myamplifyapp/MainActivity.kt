@@ -44,22 +44,22 @@ class MainActivity : ComponentActivity() {
                                 text = "Hello ${state.user.username}!",
                             )
 
-                            TodoList()
+//                            TodoList()
 
-                            Button(onClick = {
-                                val todo = Todo.builder()
-                                    .content("My first todo")
-                                    .build()
-
-
-                                Amplify.API.mutate(
-                                    ModelMutation.create(todo),
-                                    { Log.i("MyAmplifyApp", "Added Todo with id: ${it.data.id}")},
-                                    { Log.e("MyAmplifyApp", "Create failed", it)},
-                                )
-                            }) {
-                                Text(text = "Create Todo")
-                            }
+//                            Button(onClick = {
+//                                val todo = Todo.builder()
+//                                    .content("My first todo")
+//                                    .build()
+//
+//
+//                                Amplify.API.mutate(
+//                                    ModelMutation.create(todo),
+//                                    { Log.i("MyAmplifyApp", "Added Todo with id: ${it.data.id}")},
+//                                    { Log.e("MyAmplifyApp", "Create failed", it)},
+//                                )
+//                            }) {
+//                                Text(text = "Create Todo")
+//                            }
 
                             Button(onClick = {
                                 Amplify.Auth.signOut {  }
@@ -90,37 +90,37 @@ fun GreetingPreview() {
     }
 }
 
-@Composable
-fun TodoList() {
-    var todoList by remember { mutableStateOf(emptyList<Todo>()) }
-
-    LaunchedEffect(Unit) {
-        // API request to list all Todos
-        Amplify.API.query(
-            ModelQuery.list(Todo::class.java),
-            { todoList = it.data.items.toList() },
-            { Log.e("MyAmplifyApp", "Failed to query.", it) }
-        )
-
-
-        Amplify.API.subscribe(
-            ModelSubscription.onCreate(Todo::class.java),
-            { Log.i("ApiQuickStart", "Subscription established") },
-            {
-                Log.i("ApiQuickStart", "Todo create subscription received: ${it.data}")
-                todoList = todoList + it.data
-            },
-            { Log.e("ApiQuickStart", "Subscription failed", it) },
-            { Log.i("ApiQuickStart", "Subscription completed") }
-        )
-    }
-
-    LazyColumn {
-        items(todoList) { todo ->
-            Row {
-                // Render your activity item here
-                Text(text = todo.content)
-            }
-        }
-    }
-}
+//@Composable
+//fun TodoList() {
+//    var todoList by remember { mutableStateOf(emptyList<Todo>()) }
+//
+//    LaunchedEffect(Unit) {
+//        // API request to list all Todos
+//        Amplify.API.query(
+//            ModelQuery.list(Todo::class.java),
+//            { todoList = it.data.items.toList() },
+//            { Log.e("MyAmplifyApp", "Failed to query.", it) }
+//        )
+//
+//
+//        Amplify.API.subscribe(
+//            ModelSubscription.onCreate(Todo::class.java),
+//            { Log.i("ApiQuickStart", "Subscription established") },
+//            {
+//                Log.i("ApiQuickStart", "Todo create subscription received: ${it.data}")
+//                todoList = todoList + it.data
+//            },
+//            { Log.e("ApiQuickStart", "Subscription failed", it) },
+//            { Log.i("ApiQuickStart", "Subscription completed") }
+//        )
+//    }
+//
+//    LazyColumn {
+//        items(todoList) { todo ->
+//            Row {
+//                // Render your activity item here
+//                Text(text = todo.content)
+//            }
+//        }
+//    }
+//}

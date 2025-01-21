@@ -41,7 +41,7 @@ android {
 }
 
 dependencies {
-    implementation("com.amplifyframework:aws-api:2.24.0")
+//    implementation("com.amplifyframework:aws-api:2.24.0")
     implementation("com.amplifyframework.ui:authenticator:1.4.0")
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.3")
 
